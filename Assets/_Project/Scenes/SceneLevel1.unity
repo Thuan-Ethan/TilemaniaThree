@@ -16166,6 +16166,7 @@ GameObject:
   - component: {fileID: 1472627481}
   - component: {fileID: 1472627483}
   - component: {fileID: 1472627482}
+  - component: {fileID: 1472627484}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16296,6 +16297,28 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &1472627484
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472627477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1594561ec08e1ee4c95157f16bb0c507, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1677233218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2970288865244914814, guid: e155e1e4c208379429b2cba376452d16, type: 3}
@@ -16627,6 +16650,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1472627478}
     m_Modifications:
+    - target: {fileID: 112661396950028265, guid: e155e1e4c208379429b2cba376452d16, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2970288865244914814, guid: e155e1e4c208379429b2cba376452d16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

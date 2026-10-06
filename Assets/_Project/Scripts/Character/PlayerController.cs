@@ -1,13 +1,14 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 15f;
+    [SerializeField] private float playerSpeed = 10f;
+    [SerializeField] Animator myAnimator;
     
     Vector2 moveInput;
-    Rigidbody2D rb; 
+    Rigidbody2D rb;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,16 +32,18 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 playerMove = new Vector2(moveInput.x * playerSpeed, rb.linearVelocity.y); // Player can move right, left but can't up or down
         rb.linearVelocity = playerMove;
+        // Set up animation State (Run)
+        bool hasHorizontalSpeed = Mathf.Abs(rb.linearVelocity.x) > Mathf.Epsilon;
+        myAnimator.SetBool("isRunning", hasHorizontalSpeed);
     }
     
     void flipPlayer()
     {
-        bool hasHorizontalSpeed = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
+        bool hasHorizontalSpeed = Mathf.Abs(rb.linearVelocity.x) > Mathf.Epsilon;
         //transform.localScale = new Vector2(Mathf.Sign(moveInput.x), Mathf.Sign(moveInput.y));
         if (hasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.linearVelocity.x), 1f); // Y axes not scale
         }
     }
-    
 }
