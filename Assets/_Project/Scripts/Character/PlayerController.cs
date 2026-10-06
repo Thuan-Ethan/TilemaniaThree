@@ -4,15 +4,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 10f;
+    [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] Animator myAnimator;
     
     Vector2 moveInput;
     Rigidbody2D rb;
+    CapsuleCollider2D mycapsuleCollider; 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        mycapsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,14 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = value.Get<Vector2>();
         // print(moveInput);
+    }
+
+    void OnJump(InputValue value)
+    {
+        if (value.isPressed && mycapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            rb.linearVelocity = new Vector2(0f, jumpSpeed);
+        }
     }
 
     void playerRun()
