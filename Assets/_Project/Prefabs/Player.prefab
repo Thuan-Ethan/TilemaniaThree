@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6791950137877693590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4243348532661493377}
+  m_Layer: 8
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4243348532661493377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791950137877693590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.235, y: -0.217, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7379327018371580939}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8200799986804823853
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,8 +129,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03586644, y: -0.035829425}
-  m_Size: {x: 0.5731882, y: 0.8577087}
+  m_Offset: {x: -0.053585052, y: -0.035829425}
+  m_Size: {x: 0.45399094, y: 0.8577087}
   m_Direction: 0
 --- !u!61 &3108078793158067781
 BoxCollider2D:
@@ -194,6 +225,8 @@ MonoBehaviour:
   climbSpeed: 5
   myAnimator: {fileID: 6215788296555029898}
   dieHigh: {x: 10, y: 20}
+  gun: {fileID: 4243348532661493377}
+  bullet: {fileID: 3469117498305928492, guid: 4c1c4e739cd90334eb04552f11beb59a, type: 3}
 --- !u!1001 &5715128603180769397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,7 +281,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2970288865244914814, guid: e155e1e4c208379429b2cba376452d16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4243348532661493377}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e155e1e4c208379429b2cba376452d16, type: 3}
 --- !u!95 &6215788296555029898 stripped

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] Animator myAnimator;
     [SerializeField] Vector2 dieHigh = new Vector2(5f, 10f);
+    [SerializeField] Transform gun;
+    [SerializeField] GameObject bullet;
     
     Vector2 moveInput;
     Rigidbody2D rb;
@@ -92,6 +94,12 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = gravityScaleCurrent;
             myAnimator.SetBool("isClimbing", false);
         }
+    }
+
+    void OnAttack(InputValue value)
+    {
+        if (!isAlive) {  return; }
+        GameObject newBullet = Instantiate(bullet, gun.position, transform.rotation);
     }
 
     void PlayerDie()
