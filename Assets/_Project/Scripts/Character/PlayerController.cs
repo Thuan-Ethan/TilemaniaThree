@@ -10,15 +10,17 @@ public class PlayerController : MonoBehaviour
     
     Vector2 moveInput;
     Rigidbody2D rb;
-    CapsuleCollider2D mycapsuleCollider;
-
+    CapsuleCollider2D myBodyCollider;
+    BoxCollider2D myFeetCollider;
+    
     private float gravityScaleCurrent;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        mycapsuleCollider = GetComponent<CapsuleCollider2D>();
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
+        myFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleCurrent = rb.gravityScale;
     }
 
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && mycapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (value.isPressed && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             rb.linearVelocity = new Vector2(0f, jumpSpeed);
         }
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     void climbLadder()
     {
-        if (mycapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (myFeetCollider&& myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             Vector2 climbVelocity = new Vector2(rb.linearVelocity.x, moveInput.y * climbSpeed); // Player move to ladder up and down by Y axes, Can't move on x axes 
             rb.linearVelocity = climbVelocity;
