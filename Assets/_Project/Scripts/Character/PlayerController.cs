@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D myFeetCollider;
     
     private float gravityScaleCurrent;
+    private bool isAlive = true;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,26 +28,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerRun();
-        flipPlayer();
-        climbLadder();
+        if (!isAlive) {  return; }
+        PlayerRun();
+        FlipPlayer();
+        ClimbLadder();
+        PlayerDie();
     }
 
     void OnMove(InputValue value)
     {
+        if (!isAlive) {  return; }
         moveInput = value.Get<Vector2>();
         // print(moveInput);
     }
 
     void OnJump(InputValue value)
     {
+        if (!isAlive) {  return; }
         if (value.isPressed && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             rb.linearVelocity = new Vector2(0f, jumpSpeed);
         }
     }
 
-    void playerRun()
+    void PlayerRun()
     {
         Vector2 playerMove = new Vector2(moveInput.x * playerSpeed, rb.linearVelocity.y); // Player can move right, left but can't up or down
         rb.linearVelocity = playerMove;
@@ -55,7 +60,7 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetBool("isRunning", hasHorizontalSpeed);
     }
     
-    void flipPlayer()
+    void FlipPlayer()
     {
         bool hasHorizontalSpeed = Mathf.Abs(rb.linearVelocity.x) > Mathf.Epsilon;
         //transform.localScale = new Vector2(Mathf.Sign(moveInput.x), Mathf.Sign(moveInput.y));
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void climbLadder()
+    void ClimbLadder()
     {
         if (myFeetCollider&& myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
@@ -82,4 +87,13 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetBool("isClimbing", false);
         }
     }
+
+    void PlayerDie()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+        }
+    }
+    
 }
