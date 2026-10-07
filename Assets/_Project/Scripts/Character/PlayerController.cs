@@ -6,7 +6,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float playerSpeed = 10f;
     [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private float climbSpeed = 5f;
+    
+    
     [SerializeField] Animator myAnimator;
+    [SerializeField] Vector2 dieHigh = new Vector2(5f, 10f);
     
     Vector2 moveInput;
     Rigidbody2D rb;
@@ -15,6 +18,8 @@ public class PlayerController : MonoBehaviour
     
     private float gravityScaleCurrent;
     private bool isAlive = true;
+    private int  dangerLayer;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleCurrent = rb.gravityScale;
+        dangerLayer = LayerMask.GetMask("Enemy", "Hazards");
     }
 
     // Update is called once per frame
@@ -90,10 +96,11 @@ public class PlayerController : MonoBehaviour
 
     void PlayerDie()
     {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (myBodyCollider.IsTouchingLayers(dangerLayer) || myFeetCollider.IsTouchingLayers(dangerLayer))
         {
             isAlive = false;
+            myAnimator.SetTrigger("isDying");
+            rb.linearVelocity = dieHigh; 
         }
     }
-    
 }

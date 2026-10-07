@@ -111,7 +111,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 78782c2fdf4f0784f9543e5d2ba3e5f7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   jumpSpeed: 16
   climbSpeed: 5
   myAnimator: {fileID: 6215788296555029898}
+  dieHigh: {x: 10, y: 20}
 --- !u!1001 &5715128603180769397
 PrefabInstance:
   m_ObjectHideFlags: 0
