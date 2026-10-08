@@ -111,4 +111,9 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = dieHigh; 
         }
     }
+
+    void PickupCoin()
+    {
+    
+    }
 }
