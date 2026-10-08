@@ -108,12 +108,8 @@ public class PlayerController : MonoBehaviour
         {
             isAlive = false;
             myAnimator.SetTrigger("isDying");
-            rb.linearVelocity = dieHigh; 
+            rb.linearVelocity = dieHigh;
+            FindAnyObjectByType<GameSessions>().ProcessPlayerDeath();
         }
-    }
-
-    void PickupCoin()
-    {
-    
     }
 }
